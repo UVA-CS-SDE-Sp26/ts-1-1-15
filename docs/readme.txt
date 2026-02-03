@@ -1,35 +1,35 @@
 2/3/2026
 Project Contributors:
-Nathaneal Wattier
-Michael Farace
-Ellie Kim
-Claudia Castagna
+Claudia Castagna, Role A, UserInterface
+Nathaneal Wattier, Role B, FileHandler
+Michael Farace, Role C, Program Control
+Ellie Kim, Role D, Cipher
 
 TopSecret documentation starter file
 
 UserInterface
----------------------------
+-------------
 goal: manage all command line inputs and outputs.
 1) take arguments and either appropriately call ProgramControl.listFiles(), ProgramControl.retrieve(int), or
  ProgramControl.retrieve(int,String)
 
 
 FileHandler
----------------------------------
+------------------------------------
 +String getContents(String filename)
 +ArrayList<String> getFilenames()
----------------------------------
+------------------------------------
 goal: manage the file folder named data.
 1) take request (from program control) for file as String filename, return contents of file as a String
 2) take request (from program control) for the list of filenames, return ArrayList of filenames
 
 
 ProgramControl
-----------------------------
+------------------------------------
 +String listFiles()
 +String retrieve(int num)
 +String retrieve(int num,String key)
-----------------------------
+------------------------------------
 goal: connect command line to file handler, connect file contents with deciphering.
 1) receive request (from userinterface) with no arguments, return list of files available using
  FileHandler.getFilenames()
