@@ -3,6 +3,21 @@ Nathaneal Wattier
 
 File Handler Documentation:
 
-The file handler should read text files into from a director "data"
-in the root of the project.
+The file handler should read text files into from a director "data" in the root of the project.
 
+
+filehandler
+-------------------
+listFiles();
+findFile(String filename);
+-------------------
+
+
+filehandler Pseudocode:
+
+// returns a string array of file names
+String[] listFiles();
+
+
+// returns the contents of a file as a string given its name
+String findFile(String filename);
