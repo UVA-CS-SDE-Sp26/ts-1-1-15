@@ -7,11 +7,12 @@ program is executed with no arguments, this part of the program should provide a
 from the work of Team Member B, along with a corresponding number.
 
 ProgramControl
----------------------------
+-------------------------------
+-String getFileContents(int)
+-------------------------------
 +String control()
 +String control(int)
 +String control(int,String)
----------------------------
 
 ProgramControl Pseudocode
 ------------------------------------------------------
@@ -29,7 +30,10 @@ String control ( int num ){
 //deciphered from Team Member D, Ellie Kim
 String control( int num, String key ){
     String contents;
-    contents = retrieve_stuff_from_file();
+    contents = getFileContents( num )
     contents = deciphered_stuff_from_Ellie( contents );
     return contents;
 }
+
+//grab file contents
+String getFileContents(int num)
