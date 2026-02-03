@@ -1,0 +1,8 @@
+Nathaneal Wattier
+
+
+File Handler Documentation:
+
+The file handler should read text files into from a director "data"
+in the root of the project.
+
