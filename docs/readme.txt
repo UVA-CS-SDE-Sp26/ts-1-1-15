@@ -11,7 +11,7 @@ UserInterface
 ---------------------------
 goal: manage all command line inputs and outputs.
 1) take arguments and either appropriately call ProgramControl.listFiles(), ProgramControl.retrieve(int), or
-ProgramControl.retrieve(int,String)
+ ProgramControl.retrieve(int,String)
 
 
 FileHandler
@@ -31,10 +31,10 @@ ProgramControl
 +String retrieve(int num,String key)
 ----------------------------
 goal: connect command line to file handler, connect file contents with deciphering.
-1) receive request (from userinterface) with no arguments, return list of files available (from
-filehandler) as String
-2) receive request (from userinterface) with int argument, return corresponding file contents as String
-3) receive request (from userinterface) with int and String argument.
+1) receive request (from userinterface) with no arguments, return list of files available using
+ FileHandler.getFilenames()
+2) receive request (from userinterface) with int and String argument, return Cipher.decipher() of
+ FileHandler.getContents() using FileHandler.getFilenames() at index num
 
 
 Cipher
