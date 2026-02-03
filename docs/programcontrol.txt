@@ -1,0 +1,35 @@
+ProgramControl
+2/2/2025
+Michael Farace
+
+This class connects the command line to the file handler, requesting file contents and returning readable text. When the
+program is executed with no arguments, this part of the program should provide a list of files available, as provided
+from the work of Team Member B, along with a corresponding number.
+
+ProgramControl
+---------------------------
++String control()
++String control(int)
++String control(int,String)
+---------------------------
+
+ProgramControl Pseudocode
+------------------------------------------------------
+//return list of files, from Team Member B, Nathan Wattier
+String control( ){
+    return stuff_from_Nathan()
+}
+
+//return contents of file using default key
+String control ( int num ){
+    return control(num, default key)
+}
+
+//return contents of file corresponding to the int num,
+//deciphered from Team Member D, Ellie Kim
+String control( int num, String key ){
+    String contents;
+    contents = retrieve_stuff_from_file();
+    contents = deciphered_stuff_from_Ellie( contents );
+    return contents;
+}
