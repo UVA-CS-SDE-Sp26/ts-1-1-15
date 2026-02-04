@@ -1,0 +1,29 @@
+Ellie Kim
+
+The cipher class should accept a ciphered string and return it deciphered.
+When the cipher is accessed, it must be validated.
+
+Cipher Pseudocode:
+
+Open file "ciphers.key.txt"
+
+if file cannot be opened, print error
+    then stop
+
+read first line into array called PLAIN
+read second line into array called CIPHER
+
+input ciphered string
+
+set decoded string to empty
+
+for each character ch in CIPHER
+    if ch exists in CIPHER
+        find index i of ch in CIPHER
+        append PLAIN[i] to decoded string
+    else
+        append ch to decoded string
+    end if
+end for
+
+output decoded string
