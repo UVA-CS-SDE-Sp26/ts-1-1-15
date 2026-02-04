@@ -1,0 +1,12 @@
+TopSecret
+2/4/26
+Claudia Castagna
+
+This class controls the command line interface for the user. When the program runs with no arguments a list
+of available files should be printed to the screen. When the program runs with just a number as an argument
+the contents of the corresponding file should be displayed on the screen. When no second parameter is
+given the program uses the default key. If a second parameter is specified this indicates which cipher to
+use to decode the file.
+
+
+
