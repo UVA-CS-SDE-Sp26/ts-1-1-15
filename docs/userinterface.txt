@@ -8,23 +8,42 @@ the contents of the corresponding file should be displayed on the screen. When n
 given the program uses the default key. If a second parameter is specified this indicates which cipher to
 use to decode the file.
 
+Userinterface
+-------------------------------
++String noArg()
++String oneArg()
++String twoArg()
++String moreArg()
++String determineOutput(int)
+
 Userinterface Pseudocode:
+-------------------------------
 
-
-if arguments == 0:
+noArg()
     list file names available
     program exits
 
-if arguments == number:
+
+OneArg()
     output the contents of the specified file using the default cipher
     exit program
 
-if arguments == 2:
+twoArg()
     output the contents of the specified file using the specified cipher
     exit program
 
-if arguments >= 3:
+moreArg()
     output error "Too many positional arguments"
+
+determineOutput(num_args)
+    if num_args == 0:
+        noArg()
+    else if num_args == 1:
+        oneArg()
+    else if num_args == 2:
+        twoArg()
+    else:
+        moreArg()
 
 
 
