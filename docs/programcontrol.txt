@@ -1,5 +1,5 @@
 ProgramControl
-2/2/2025
+2/4/2026
 Michael Farace
 
 This class connects the command line to the file handler, requesting file contents and returning readable text. When the
@@ -8,32 +8,34 @@ from the work of Team Member B, along with a corresponding number.
 
 ProgramControl
 -------------------------------
--String getFileContents(int)
--------------------------------
-+String control()
-+String control(int)
-+String control(int,String)
++String listFiles()
++String retrieve(int num)
++String retrieve(int num,String key)
 
 ProgramControl Pseudocode
 ------------------------------------------------------
 //return list of files, from Team Member B, Nathan Wattier
-String control( ){
-    return stuff_from_Nathan()
+String listFiles( ){
+    String out="";
+    ArrayList<String> list = FileHandler.getFilenames();
+    for (int i=0; i < list.size(); ++i){
+        out += ""+(i+1)+": "+list.get(i);
+    }
+    return out;
 }
 
 //return contents of file using default key
-String control ( int num ){
-    return control(num, default key)
+String retrieve ( int num ){
+    String filename = FileHandler.getFilenames().get(num);
+    String contents = FileHandler.getContents(filename);
+    return Cipher.decipher(contents);
 }
+
 
 //return contents of file corresponding to the int num,
 //deciphered from Team Member D, Ellie Kim
-String control( int num, String key ){
-    String contents;
-    contents = getFileContents( num )
-    contents = deciphered_stuff_from_Ellie( contents );
-    return contents;
+String retrieve( int num, String key ){
+    String filename = FileHandler.getFilenames().get(num);
+    String contents = FileHandler.getContents(filename);
+    return Cipher.decipher(contents, key);
 }
-
-//grab file contents
-String getFileContents(int num)
