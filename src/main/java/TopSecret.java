@@ -3,5 +3,9 @@
  */
 public class TopSecret {
 
+    public static void main(String[] args) {
+
+    }
+
 
 }

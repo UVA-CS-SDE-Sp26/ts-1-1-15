@@ -4,13 +4,14 @@ import org.mockito.Mockito;
 
 class UserinterfaceTest {
 
-    private ProgramControl mockArgs;
+    public ProgramControl mockProgramControl;
 
     @BeforeEach
     void setUp() {
 
-        mockArgs = Mockito.mock(ProgramControl.class);
-        Mockito.when(ProgramControl.listfiles()));
+        mockProgramControl = Mockito.mock(ProgramControl.class);
+        Mockito.when(ProgramControl.listFiles()).thenReturn("file1 \n file2 \n file3");
+
 
 
     }
@@ -18,26 +19,23 @@ class UserinterfaceTest {
     @Test
     void determineOutput() {
 
+    }
 
-
+    @Test
+    void displayFiles() {
 
     }
 
     @Test
-    void noArg() {
-
+    void decipherDefault() {
     }
 
     @Test
-    void oneArg() {
+    void dechiperSpecified() {
     }
 
     @Test
-    void twoArg() {
-    }
-
-    @Test
-    void moreArg() {
+    void tooManyArgs() {
     }
 
 }
