@@ -3,7 +3,7 @@ public class Userinterface {
 
     public static String displayFiles() {
         //print available files
-        return "";
+        return ProgramControl.listFiles();
     }
 
     public static String decipherDefault() {
@@ -16,14 +16,25 @@ public class Userinterface {
         return "";
     }
 
-    public static String tooManyArgs() {
-        //Produce error, too many positional arguments
-        return "";
-    }
-
-    public static String determineOutput(int numArgs) {
+    public static String determineOutput(int numArgs) throws IllegalArgumentException {
         //Determine which output based on numArgs
-        return "";
+        if (numArgs == 0)  {
+            return displayFiles();
+        }
+        
+        else if (numArgs == 1)  {
+            //Also check type of argument?
+            return decipherDefault();
+        }
+        
+        else if (numArgs == 2)  {
+            //Also check type of argument?
+            return decipherSpecified();
+        }
+        
+        else {
+            throw new IllegalArgumentException("Attempted to run program with too many arguments.");
+        }
     }
 
 }
