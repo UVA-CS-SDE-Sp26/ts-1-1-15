@@ -4,21 +4,14 @@ import org.mockito.Mockito;
 
 class UserinterfaceTest {
 
-    public String availableFiles;
-    public String defaultDecipheredContents;
-    public String specificDecipheredContents;
+    private ProgramControl mockArgs;
 
     @BeforeEach
     void setUp() {
 
-        availableFiles = "file1 \n file2 \n file 3";
-        defaultDecipheredContents = "Hello World!";
-        specificDecipheredContents = "Good Morning!";
+        mockArgs = Mockito.mock(ProgramControl.class);
+        Mockito.when(ProgramControl.listfiles()));
 
-        Userinterface mockArgs = Mockito.mock(Userinterface.class);
-        Mockito.when(Userinterface.determineOutput(0)).thenReturn(availableFiles);
-        Mockito.when(Userinterface.determineOutput(1)).thenReturn(defaultDecipheredContents);
-        Mockito.when(Userinterface.determineOutput(2)).thenReturn(specificDecipheredContents);
 
     }
 
