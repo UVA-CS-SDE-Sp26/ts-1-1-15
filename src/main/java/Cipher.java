@@ -8,15 +8,16 @@ import java.util.Arrays;
 
 public class Cipher {
 
-
     public static void readCipherFile(){
 
     }
 
-    public static String decipher(String input, String key){}
+    public static String decipher(String input){
+        return null;
+    }
 
-
-
-
+    public static String decipher(String input, String key){
+        return null;
+    }
 
 }

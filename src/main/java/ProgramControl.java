@@ -6,7 +6,7 @@ public class ProgramControl {
         StringBuilder out= new StringBuilder();
         ArrayList<String> list = FileHandler.getFilenames();
         for (int i=0; i < list.size(); ++i){
-            out.append(String.format("%02d", (i + 1))).append(" ").append(list.get(i));
+            out.append(String.format("%02d", (i + 1))).append(" ").append(list.get(i)).append("\n");
         }
         return out.toString();
     }
