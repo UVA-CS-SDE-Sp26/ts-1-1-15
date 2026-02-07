@@ -1,10 +1,32 @@
 import java.util.ArrayList;
 
 public class FileHandler {
-    public static String getContents(String filename){
-        return null;
-    }
-    public static ArrayList<String> getFilenames(){
-        return null;
-    }
+
+ArrayList<String> FileNames = new ArrayList<>();
+
+
+public ArrayList<String> getFilenames() {
+    return FileNames;
+
+}
+
+public String getFilenames(int num){
+    return FileNames.get(num);
+}
+
+
+private String parseFile(String filePath){
+    String fileContent = "";
+    return fileContent;
+
+}
+
+// creates path then calls parser
+public String getContents(String filename) {
+    String path = filename;
+    return parseFile(path);
+
+}
+
+
 }
