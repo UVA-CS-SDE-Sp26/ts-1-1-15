@@ -8,7 +8,7 @@ public class Userinterface {
 
     public static String decipherDefault() {
         //print contents of file using default decipher
-        return "";
+
     }
 
     public static String decipherSpecified() {
