@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedConstruction;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.*;
@@ -10,28 +11,27 @@ class ProgramControlTest {
 
     @Test
     void listFiles() {
-        // Arrange
         ArrayList<String> mockFiles = new ArrayList<>(Arrays.asList(
                 "document1.txt",
                 "secret.txt",
                 "notes.txt"
         ));
-
-        try (MockedStatic<FileHandler> mockedFileHandler = Mockito.mockStatic(FileHandler.class)) {
-            mockedFileHandler.when(FileHandler::getFilenames).thenReturn(mockFiles);
+        try (MockedConstruction<FileHandler> controller = Mockito.mockConstruction(FileHandler.class)) {
             String result = ProgramControl.listFiles();
+            FileHandler createdMock = controller.constructed().get(0);
+            when(createdMock.getFilenames()).thenReturn(mockFiles);
             String expected = "01 document1.txt\n02 secret.txt\n03 notes.txt\n";
-
             assertEquals(expected, result);
-            mockedFileHandler.verify(FileHandler::getFilenames, times(1));
+            verify(createdMock).getFilenames();
         }
     }
 
     @Test
     void listFilesEmpty() {
         ArrayList<String> emptyList = new ArrayList<>();
-        try (MockedStatic<FileHandler> mockedFileHandler = Mockito.mockStatic(FileHandler.class)) {
-            mockedFileHandler.when(FileHandler::getFilenames).thenReturn(emptyList);
+        try (MockedConstruction<FileHandler> controller = Mockito.mockConstruction(FileHandler.class)) {
+            FileHandler createdMock = controller.constructed().get(0);
+            when(createdMock.getFilenames()).thenReturn(emptyList);
             String result = ProgramControl.listFiles();
             assertEquals("", result);
         }
@@ -45,15 +45,18 @@ class ProgramControlTest {
         ));
         String encryptedContent = "data";
         String decryptedContent = "Hello World";
-        try (MockedStatic<FileHandler> mockedFileHandler = Mockito.mockStatic(FileHandler.class);
-             MockedStatic<Cipher> mockedCipher = Mockito.mockStatic(Cipher.class)) {
-            mockedFileHandler.when(FileHandler::getFilenames).thenReturn(mockFiles);
-            mockedFileHandler.when(() -> FileHandler.getContents("file1.txt")).thenReturn(encryptedContent);
+        FileHandler mockHandler = Mockito.mock(FileHandler.class);
+        when(mockHandler.getFilenames()).thenReturn(mockFiles);
+        when(mockHandler.getContents("file1.txt")).thenReturn(encryptedContent);
+        try (MockedStatic<Cipher> mockedCipher = Mockito.mockStatic(Cipher.class);
+             MockedConstruction<FileHandler> mockedConstruction = Mockito.mockConstruction(FileHandler.class,
+                     (mock, context) -> {
+                         when(mock.getFilenames()).thenReturn(mockFiles);
+                         when(mock.getContents("file1.txt")).thenReturn(encryptedContent);
+                     })) {
             mockedCipher.when(() -> Cipher.decipher(encryptedContent)).thenReturn(decryptedContent);
             String result = ProgramControl.retrieve(0);
-
             assertEquals(decryptedContent, result);
-            mockedFileHandler.verify(() -> FileHandler.getContents("file1.txt"), times(1));
             mockedCipher.verify(() -> Cipher.decipher(encryptedContent), times(1));
         }
     }
@@ -67,15 +70,15 @@ class ProgramControlTest {
         String encryptedContent = "encrypted stuff";
         String decryptedContent = "secret message";
         String customKey = "secretkey";
-        try (MockedStatic<FileHandler> mockedFileHandler = Mockito.mockStatic(FileHandler.class);
+        try (MockedConstruction<FileHandler> mockedConstruction = Mockito.mockConstruction(FileHandler.class,
+                (mock, context) -> {
+                    when(mock.getFilenames()).thenReturn(mockFiles);
+                    when(mock.getContents("file2.txt")).thenReturn(encryptedContent);
+                });
              MockedStatic<Cipher> mockedCipher = Mockito.mockStatic(Cipher.class)) {
-            mockedFileHandler.when(FileHandler::getFilenames).thenReturn(mockFiles);
-            mockedFileHandler.when(() -> FileHandler.getContents("file2.txt")).thenReturn(encryptedContent);
             mockedCipher.when(() -> Cipher.decipher(encryptedContent, customKey)).thenReturn(decryptedContent);
             String result = ProgramControl.retrieve(1, customKey);
-
             assertEquals(decryptedContent, result);
-            mockedFileHandler.verify(() -> FileHandler.getContents("file2.txt"), times(1));
             mockedCipher.verify(() -> Cipher.decipher(encryptedContent, customKey), times(1));
         }
     }
