@@ -18,37 +18,83 @@ public class FileHandler {
     public ArrayList<String> getFilenames() throws IOException {
         try (Stream<Path> stream = Files.list(dataPath)) {
             return stream
-                    .filter(Files::isRegularFile) // makes sure we are not accessing a subdirectory - may not be necessary
+                    .filter(Files::isRegularFile) // makes sure we are not accessing a subdirectory
 
-                   /* sorts files alphabetically, if the files all have the same name except for number,
-                   this will put them in order: File01.txt, File02.txt etc.
-                   */
+                    /* sorts files alphabetically, if the files all have the same name except for number,
+                    this will put them in order: File01.txt, File02.txt etc */
                     .sorted(Comparator.comparing(path -> path.getFileName().toString()))
 
                     .map(path -> path.getFileName().toString())   // convert Path -> String
                     .collect(Collectors.toCollection(ArrayList::new)); // Collect all Strings into arraylist
+
         }
+
+        // what if data directory not found
+        catch (IOException e) {
+            System.err.println("Error reading directory: " + e.getMessage());
+            return new ArrayList<>();
+        }
+
+        // what if file names could not be read
+        catch (Exception e) {
+            System.err.println("Unexpected error in getFilenames(): " + e.getMessage());
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+
     }
+
 
     // Return the name of the nth file
     public String getFilenames(int n) throws IOException {
-        ArrayList<String> files = getFilenames();
+        try {
+            ArrayList<String> files = getFilenames();
 
-        if (n < 0 || n >= files.size()) {
-            throw new IndexOutOfBoundsException("Invalid file index: " + n);
+            //invald index
+            if (n < 0 || n >= files.size()) {
+                System.err.println("Invalid file index: " + n);
+                return null;
+            }
+
+            return files.get(n);
+
+        // catch excess errors
+        } catch (Exception e) {
+            System.err.println("Unexpected error in getFilename(): " + e.getMessage());
+            e.printStackTrace();
+            return null;
         }
-
-        return files.get(n);
     }
 
     // Return contents of a file by name
     public String getContents(String fileName) throws IOException {
-        Path filePath = dataPath.resolve(fileName);
+        try {
+            // possible file name check
+            if (fileName == null || fileName.isBlank()) {
+                System.err.println("Filename cannot be null or empty.");
+                return "";
+            }
 
-        if (!Files.exists(filePath) || !Files.isRegularFile(filePath)) {
-            throw new IllegalArgumentException("File not found: " + fileName);
+            Path filePath = dataPath.resolve(fileName);
+
+            // path existance and sub-directory check
+            if (!Files.exists(filePath) || !Files.isRegularFile(filePath)) {
+                System.err.println("File not found: " + fileName);
+                return "";
+            }
+
+            return Files.readString(filePath);
+
+        // since directly accessses files, needs to catch additional IO exception errors
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
+            return "";
+
+        // catch excess errors
+        } catch (Exception e) {
+            System.err.println("Unexpected error in getContents(): " + e.getMessage());
+            e.printStackTrace();
+            return "";
         }
-
-        return Files.readString(filePath);
     }
 }
