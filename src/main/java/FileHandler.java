@@ -18,10 +18,15 @@ public class FileHandler {
     public ArrayList<String> getFilenames() throws IOException {
         try (Stream<Path> stream = Files.list(dataPath)) {
             return stream
-                    .filter(Files::isRegularFile)
+                    .filter(Files::isRegularFile) // makes sure we are not accessing a subdirectory - may not be necessary
+
+                   /* sorts files alphabetically, if the files all have the same name except for number,
+                   this will put them in order: File01.txt, File02.txt etc.
+                   */
                     .sorted(Comparator.comparing(path -> path.getFileName().toString()))
-                    .map(path -> path.getFileName().toString()) // convert Path -> String
-                    .collect(Collectors.toCollection(ArrayList::new));
+
+                    .map(path -> path.getFileName().toString())   // convert Path -> String
+                    .collect(Collectors.toCollection(ArrayList::new)); // Collect all Strings into arraylist
         }
     }
 
