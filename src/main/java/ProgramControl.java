@@ -1,8 +1,9 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ProgramControl {
     //return list of files, from Team Member B, Nathan Wattier
-    public static String listFiles(){
+    public static String listFiles() throws IOException {
         StringBuilder out= new StringBuilder();
         FileHandler handler = new FileHandler();
         ArrayList<String> list = handler.getFilenames();
@@ -13,7 +14,7 @@ public class ProgramControl {
     }
 
     //return contents of file using default key
-    public static String retrieve(int num){
+    public static String retrieve(int num) throws IOException {
         FileHandler handler = new FileHandler();
         String filename = handler.getFilenames().get(num);
         String contents = handler.getContents(filename);
@@ -22,7 +23,7 @@ public class ProgramControl {
 
     //return contents of file corresponding to the int num,
     //deciphered from Team Member D, Ellie Kim
-    public static String retrieve(int num, String key){
+    public static String retrieve(int num, String key) throws IOException {
         FileHandler handler = new FileHandler();
         String filename = handler.getFilenames().get(num);
         String contents = handler.getContents(filename);

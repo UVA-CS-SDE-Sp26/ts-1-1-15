@@ -1,11 +1,17 @@
 import javax.sound.midi.SysexMessage;
+import java.io.IOException;
 
 public class Userinterface {
 
 
     public static String determineOutput(String[] arguments) throws IllegalArgumentException {
         if (arguments.length == 0) {
-            return ProgramControl.listFiles();
+            try {
+                return ProgramControl.listFiles();
+            }
+            catch (IOException e){
+                System.out.println(e);
+            }
         }
 
         else if (arguments.length == 1) {
@@ -15,6 +21,9 @@ public class Userinterface {
 
             catch (NumberFormatException e) {
                 System.out.println("Error: Please enter the number corresponding to the file you wish to decipher.");
+            }
+            catch (IOException e){
+                System.out.println(e);
             }
         }
 
@@ -28,6 +37,9 @@ public class Userinterface {
             }
             catch (IllegalArgumentException e) { // assuming retrieve throws this for invalid key
                 System.err.println("Error: The key '" + arguments[1] + "' is invalid.");
+            }
+            catch (IOException e){
+                System.out.println(e);
             }
         }
 
