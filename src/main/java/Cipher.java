@@ -12,20 +12,22 @@ import java.util.Scanner;
 public class Cipher {
 
    //reads the cipher file and returns the mapping
-    private static HashMap<Character, Character> readCipherFile(String key) throws Exception{
+    public static HashMap<Character, Character> readCipherFile(String key) throws Exception{
         File file = new File("ciphers/" + key);
         Scanner scanner = new Scanner(file);
 
-        String realLine = scanner.nextLine();
         if (!scanner.hasNextLine()) {
             scanner.close();
             throw new Exception("Missing first line");
         }
-        String cipherLine = scanner.nextLine();
+        String realLine = scanner.nextLine();
+
         if (!scanner.hasNextLine()) {
             scanner.close();
             throw new Exception("Missing second line");
         }
+        String cipherLine = scanner.nextLine();
+
 
         scanner.close();
 
