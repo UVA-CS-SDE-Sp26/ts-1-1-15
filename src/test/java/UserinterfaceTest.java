@@ -3,14 +3,18 @@ import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class UserinterfaceTest {
 
     MockedStatic<ProgramControl> pcMock;
+    String[] test0;
     String[] test1;
     String[] test2;
+
 
 
     @BeforeEach
@@ -20,6 +24,8 @@ class UserinterfaceTest {
         pcMock.when(() -> ProgramControl.retrieve(1)).thenReturn("The file contents deciphered with default cipher");
         pcMock.when(() -> ProgramControl.retrieve(1, "Special key")).thenReturn("The file contents with specified cipher");
 
+        test0 = new String[0];
+
         test1 = new String[1];
         test1[0] = "01";
 
@@ -28,17 +34,18 @@ class UserinterfaceTest {
         test2[1] = "key1";
 
 
-
-
     }
 
     @Test
     void determineOutput() {
 
-        assertEquals(Userinterface.determineOutput(test1), ProgramControl.listFiles());
-        assertEquals(Userinterface.determineOutput(1), ProgramControl.retrieve(1));
-        assertEquals(Userinterface.determineOutput(2), ProgramControl.retrieve(1, "Special key"));
+        assertEquals(Userinterface.determineOutput(test0), ProgramControl.listFiles());
+
+        assertEquals(Userinterface.determineOutput(test1), ProgramControl.retrieve(1));
+
+        assertEquals(Userinterface.determineOutput(test2), ProgramControl.retrieve(1, "Special key"));
+
         assertThrows(IllegalArgumentException.class, () -> Userinterface.determineOutput(-1));
 
     }
-    }
+}
