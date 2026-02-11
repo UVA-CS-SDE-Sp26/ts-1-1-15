@@ -14,6 +14,7 @@ class UserinterfaceTest {
     String[] test0;
     String[] test1;
     String[] test2;
+    String[] test3;
 
 
 
@@ -33,6 +34,8 @@ class UserinterfaceTest {
         test2[0] = "02";
         test2[1] = "key1";
 
+        test3 = new String[3];
+
 
     }
 
@@ -45,7 +48,7 @@ class UserinterfaceTest {
 
         assertEquals(Userinterface.determineOutput(test2), ProgramControl.retrieve(1, "Special key"));
 
-        assertThrows(IllegalArgumentException.class, () -> Userinterface.determineOutput(-1));
+        assertThrows(IllegalArgumentException.class, () -> Userinterface.determineOutput(test3));
 
     }
 }
