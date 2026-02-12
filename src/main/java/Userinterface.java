@@ -7,9 +7,9 @@ public class Userinterface {
     public static String determineOutput(String[] arguments) throws IllegalArgumentException {
 
         if (arguments.length == 0) {
-            try {
+
                 return ProgramControl.listFiles();
-            }
+
         }
 
         else if (arguments.length == 1) {
