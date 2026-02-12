@@ -15,7 +15,7 @@ public class FileHandler {
     }
 
     // Return all filenames as ArrayList<String>
-    public ArrayList<String> getFilenames() throws IOException {
+    public ArrayList<String> getFilenames() {
         try (Stream<Path> stream = Files.list(dataPath)) {
             return stream
                     .filter(Files::isRegularFile) // makes sure we are not accessing a subdirectory
@@ -46,7 +46,7 @@ public class FileHandler {
 
 
     // Return the name of the nth file
-    public String getFilenames(int n) throws IOException {
+    public String getFilenames(int n) {
         try {
             ArrayList<String> files = getFilenames();
 
@@ -67,7 +67,7 @@ public class FileHandler {
     }
 
     // Return contents of a file by name
-    public String getContents(String fileName) throws IOException {
+    public String getContents(String fileName){
         try {
             // possible file name check
             if (fileName == null || fileName.isBlank()) {
