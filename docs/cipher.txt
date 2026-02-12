@@ -5,6 +5,7 @@ When the cipher is accessed, it must be validated.
 
 Cipher Pseudocode:
 
+create class level variable that can access ciphers folder in my proj
 Open file "ciphers.key.txt"
 
 if file cannot be opened, print error
