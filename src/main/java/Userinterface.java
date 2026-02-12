@@ -7,9 +7,7 @@ public class Userinterface {
     public static String determineOutput(String[] arguments) throws IllegalArgumentException {
 
         if (arguments.length == 0) {
-
                 return ProgramControl.listFiles();
-
         }
 
         else if (arguments.length == 1) {
@@ -29,9 +27,6 @@ public class Userinterface {
 
             catch (NumberFormatException e) {
                 System.out.println("Error: First argument must be the number of the file.");
-            }
-            catch (IllegalArgumentException e) { // assuming retrieve throws this for invalid key
-                System.err.println("Error: The key '" + arguments[1] + "' is invalid.");
             }
         }
 
