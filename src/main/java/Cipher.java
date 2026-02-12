@@ -36,7 +36,7 @@ public class Cipher {
         HashMap<Character, Character> map = new HashMap<>();
 
         for (int i = 0; i < cipherLine.length(); i++) { //for mapping the actual real to the cipher
-            map.put(cipherLine.charAt(i), realLine.charAt(i));
+            map.put( realLine.charAt(i), cipherLine.charAt(i));
         }
 
         return map;
@@ -65,7 +65,7 @@ public class Cipher {
             return output.toString();
 
         } catch (Exception e) {
-            return "Error: invalid cipher file.";
+            return "Error: invalid cipher file."; //exits program if text cannot be deciphered properly
         }
         }
 
