@@ -36,7 +36,7 @@ public class Cipher {
         HashMap<Character, Character> map = new HashMap<>();
 
         for (int i = 0; i < cipherLine.length(); i++) { //for mapping the actual real to the cipher
-            map.put( realLine.charAt(i), cipherLine.charAt(i));
+            map.put( cipherLine.charAt(i),realLine.charAt(i), );
         }
 
         return map;
