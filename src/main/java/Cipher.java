@@ -48,9 +48,7 @@ public class Cipher {
         return decipher(input, "key.txt");
     }
 
-    public static String twoArgDecipher(){
-        return
-    }
+
 
 
 //decipher using a certain file
