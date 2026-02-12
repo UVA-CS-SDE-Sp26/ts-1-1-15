@@ -5,7 +5,7 @@ public class TopSecret {
 
     public static void main(String[] args) {
 
-        Userinterface.determineOutput(args);
+        System.out.println( Userinterface.determineOutput(args) );
 
     }
 }
