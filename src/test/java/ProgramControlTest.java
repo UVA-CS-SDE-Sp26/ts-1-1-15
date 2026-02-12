@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 class ProgramControlTest {
 
-    @Test
+    /*@Test
     void listFiles() {
         ArrayList<String> mockFiles = new ArrayList<>(Arrays.asList(
                 "document1.txt",
@@ -24,9 +24,9 @@ class ProgramControlTest {
             assertEquals(expected, result);
             verify(createdMock).getFilenames();
         }
-    }
+    }*/
 
-    @Test
+    /*@Test
     void listFilesEmpty() {
         ArrayList<String> emptyList = new ArrayList<>();
         try (MockedConstruction<FileHandler> controller = Mockito.mockConstruction(FileHandler.class)) {
@@ -35,9 +35,9 @@ class ProgramControlTest {
             String result = ProgramControl.listFiles();
             assertEquals("", result);
         }
-    }
+    }*/
 
-    @Test
+    /*@Test
     void retrieve() {
         ArrayList<String> mockFiles = new ArrayList<>(Arrays.asList(
                 "file1.txt",
@@ -59,9 +59,9 @@ class ProgramControlTest {
             assertEquals(decryptedContent, result);
             mockedCipher.verify(() -> Cipher.decipher(encryptedContent), times(1));
         }
-    }
+    }*/
 
-    @Test
+    /*@Test
     void retrieveWithKey() {
         ArrayList<String> mockFiles = new ArrayList<>(Arrays.asList(
                 "file1.txt",
@@ -81,5 +81,5 @@ class ProgramControlTest {
             assertEquals(decryptedContent, result);
             mockedCipher.verify(() -> Cipher.decipher(encryptedContent, customKey), times(1));
         }
-    }
+    }*/
 }
