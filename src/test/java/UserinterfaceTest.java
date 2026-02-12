@@ -21,7 +21,7 @@ class UserinterfaceTest {
 
         pcMock = Mockito.mockStatic(ProgramControl.class);
 
-        pcMock.when(ProgramControl::listFiles).thenReturn("file1 \n file2 \n file3");
+        pcMock.when(() -> ProgramControl.listFiles()).thenReturn("file1 \n file2 \n file3");
 
         pcMock.when(() -> ProgramControl.retrieve(1)).thenReturn("The file contents deciphered with default cipher");
 
