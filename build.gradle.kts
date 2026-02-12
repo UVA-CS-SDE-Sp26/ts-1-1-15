@@ -14,6 +14,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation("org.mockito:mockito-junit-jupiter:5.2.0")
+    testImplementation("org.mockito:mockito-inline:5.2.0")
 }
 
 tasks.test {

@@ -5,7 +5,12 @@ public class TopSecret {
 
     public static void main(String[] args) {
 
-        System.out.println(Userinterface.determineOutput(args));
+        try {
+            System.out.println(Userinterface.determineOutput(args));
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 }

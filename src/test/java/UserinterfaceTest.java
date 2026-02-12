@@ -27,6 +27,7 @@ class UserinterfaceTest {
 
         pcMock.when(() -> ProgramControl.retrieve(2, "key1")).thenReturn("The file contents with specified cipher");
 
+
         test0 = new String[0];
 
         test1 = new String[1];
@@ -37,6 +38,9 @@ class UserinterfaceTest {
         test2[1] = "key1";
 
         test3 = new String[3];
+        test3[0] = "03";
+        test3[1] = "key2";
+        test3[2] = "extra";
 
     }
 
@@ -59,4 +63,7 @@ class UserinterfaceTest {
         assertThrows(IllegalArgumentException.class, () -> Userinterface.determineOutput(test3));
 
     }
+
+
+
 }
