@@ -19,7 +19,7 @@ public class ProgramControl {
     }
 
     //return contents of file using default key
-    public static String retrieve(int num) throws IOException {
+    public static String retrieve(int num){
         FileHandler handler = new FileHandler();
         try{
             //String filename = handler.getFilenames().get(num-1);
@@ -37,7 +37,7 @@ public class ProgramControl {
 
     //return contents of file corresponding to the int num,
     //deciphered from Team Member D, Ellie Kim
-    public static String retrieve(int num, String key) throws IOException {
+    public static String retrieve(int num, String key){
         FileHandler handler = new FileHandler();
         try {
             //String filename = handler.getFilenames().get(num-1);
