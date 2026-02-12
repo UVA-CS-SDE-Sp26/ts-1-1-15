@@ -10,40 +10,42 @@ use to decode the file.
 
 Userinterface
 -------------------------------
-+String noArg()
-+String oneArg()
-+String twoArg()
-+String moreArg()
-+String determineOutput(int)
++String determineOutput(String[])
 
 Userinterface Pseudocode:
 -------------------------------
 
-noArg()
-    list file names available
-    program exits
-
-
-OneArg()
-    output the contents of the specified file using the default cipher
-    exit program
-
-twoArg()
-    output the contents of the specified file using the specified cipher
-    exit program
-
-moreArg()
-    output error "Too many positional arguments"
-
 determineOutput(num_args)
+
     if num_args == 0:
-        noArg()
+        try:
+            list all files available
+        catch: //catch propagated error
+            print "Error accessing files"
+
     else if num_args == 1:
-        oneArg()
+        try:
+            decipher with default key
+        catch:
+            print "Invalid argument, first argument must be an int"
+
+        catch:
+            print "Error accessing files"
+
+
     else if num_args == 2:
-        twoArg()
+        try:
+            decipher with specified key
+        catch:
+            print "Invalid argument, first argument must be an int and second a String"
+        catch:
+            print "Error accessing files"
+
     else:
-        moreArg()
+        throw illegal argument exception "too many arguments called with program "
+
+
+
 
 
 

@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
@@ -10,20 +11,23 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class UserinterfaceTest {
 
-    MockedStatic<ProgramControl> pcMock;
-    String[] test0;
-    String[] test1;
-    String[] test2;
-    String[] test3;
-
+    private MockedStatic<ProgramControl> pcMock;
+    private String[] test0;
+    private String[] test1;
+    private String[] test2;
+    private String[] test3;
 
 
     @BeforeEach
     void setUp() {
+
         pcMock = Mockito.mockStatic(ProgramControl.class);
+
         pcMock.when(ProgramControl::listFiles).thenReturn("file1 \n file2 \n file3");
+
         pcMock.when(() -> ProgramControl.retrieve(1)).thenReturn("The file contents deciphered with default cipher");
-        pcMock.when(() -> ProgramControl.retrieve(1, "Special key")).thenReturn("The file contents with specified cipher");
+
+        pcMock.when(() -> ProgramControl.retrieve(2, "key1")).thenReturn("The file contents with specified cipher");
 
         test0 = new String[0];
 
@@ -36,17 +40,23 @@ class UserinterfaceTest {
 
         test3 = new String[3];
 
+    }
+
+    @AfterEach
+    void tearDown() {
+
+        pcMock.close();
 
     }
 
     @Test
     void determineOutput() {
 
-        assertEquals(Userinterface.determineOutput(test0), ProgramControl.listFiles());
+        assertEquals("file1 \n file2 \n file3", Userinterface.determineOutput(test0));
 
-        assertEquals(Userinterface.determineOutput(test1), ProgramControl.retrieve(1));
+        assertEquals("The file contents deciphered with default cipher", Userinterface.determineOutput(test1));
 
-        assertEquals(Userinterface.determineOutput(test2), ProgramControl.retrieve(1, "Special key"));
+        assertEquals("The file contents with specified cipher", Userinterface.determineOutput(test2));
 
         assertThrows(IllegalArgumentException.class, () -> Userinterface.determineOutput(test3));
 

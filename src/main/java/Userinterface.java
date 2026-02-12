@@ -5,12 +5,13 @@ public class Userinterface {
 
 
     public static String determineOutput(String[] arguments) throws IllegalArgumentException {
+
         if (arguments.length == 0) {
             try {
                 return ProgramControl.listFiles();
             }
             catch (Exception e){
-                System.out.println("Error: "+e);
+                System.out.println("Error: " + e);
             }
         }
 
@@ -23,7 +24,7 @@ public class Userinterface {
                 System.out.println("Error: Please enter the number corresponding to the file you wish to decipher.");
             }
             catch (Exception e){
-                System.out.println("Error: "+e);
+                System.out.println("Error: " + e );
             }
         }
 
@@ -39,7 +40,7 @@ public class Userinterface {
                 System.err.println("Error: The key '" + arguments[1] + "' is invalid.");
             }
             catch (Exception e){
-                System.out.println("Error: "+e);
+                System.out.println("Error: " + e);
             }
         }
 
