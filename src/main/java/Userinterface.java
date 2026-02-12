@@ -10,9 +10,6 @@ public class Userinterface {
             try {
                 return ProgramControl.listFiles();
             }
-            catch (Exception e){
-                System.out.println("Error: " + e);
-            }
         }
 
         else if (arguments.length == 1) {
@@ -22,9 +19,6 @@ public class Userinterface {
 
             catch (NumberFormatException e) {
                 System.out.println("Error: Please enter the number corresponding to the file you wish to decipher.");
-            }
-            catch (Exception e){
-                System.out.println("Error: " + e );
             }
         }
 
@@ -38,9 +32,6 @@ public class Userinterface {
             }
             catch (IllegalArgumentException e) { // assuming retrieve throws this for invalid key
                 System.err.println("Error: The key '" + arguments[1] + "' is invalid.");
-            }
-            catch (Exception e){
-                System.out.println("Error: " + e);
             }
         }
 
