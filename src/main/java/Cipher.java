@@ -11,10 +11,13 @@ import java.util.Scanner;
 
 public class Cipher {
 
-   //reads the cipher file and returns the mapping
+    private static Path ciphersDir = Paths.get("ciphers");
+
     public static HashMap<Character, Character> readCipherFile(String key) throws Exception{
-        File file = new File("ciphers/" + key);
+        File file = ciphersDir.resolve(key).toFile();
         Scanner scanner = new Scanner(file);
+   //reads the cipher file and returns the mapping
+
 
         if (!scanner.hasNextLine()) {
             scanner.close();
@@ -52,9 +55,11 @@ public class Cipher {
 
 
 //decipher using a certain file
-    public static String decipher(String input, String key) {
+
+    public static String decipher(String input, String keyFile) {
         try {
-            HashMap<Character, Character> cipherMap = readCipherFile(key);
+            HashMap<Character, Character> cipherMap = readCipherFile(keyFile);
+
             StringBuilder output = new StringBuilder();
 
             for (char c : input.toCharArray()) {
@@ -67,9 +72,12 @@ public class Cipher {
             return output.toString();
 
         } catch (Exception e) {
-            return "Error: invalid cipher file."; //exits program if text cannot be deciphered properly
+            return "Error: invalid cipher file.";
         }
-        }
+    }
+
+
+
 
 
 }
