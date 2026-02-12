@@ -31,13 +31,13 @@ public class FileHandler {
 
         // what if data directory not found
         catch (IOException e) {
-            System.err.println("Error reading directory: " + e.getMessage());
+            System.out.println("Error reading directory: " + e.getMessage());
             return new ArrayList<>();
         }
 
         // what if file names could not be read
         catch (Exception e) {
-            System.err.println("Unexpected error in getFilenames(): " + e.getMessage());
+            System.out.println("Unexpected error in getFilenames(): " + e.getMessage());
             e.printStackTrace();
             return new ArrayList<>();
         }
@@ -60,7 +60,7 @@ public class FileHandler {
 
         // catch excess errors
         } catch (Exception e) {
-            System.err.println("Unexpected error in getFilename(): " + e.getMessage());
+            System.out.println("Unexpected error in getFilename(): " + e.getMessage());
             e.printStackTrace();
             return null;
         }
@@ -71,7 +71,7 @@ public class FileHandler {
         try {
             // possible file name check
             if (fileName == null || fileName.isBlank()) {
-                System.err.println("Filename cannot be null or empty.");
+                System.out.println("Filename cannot be null or empty.");
                 return "";
             }
 
@@ -79,20 +79,20 @@ public class FileHandler {
 
             // path existance and sub-directory check
             if (!Files.exists(filePath) || !Files.isRegularFile(filePath)) {
-                System.err.println("File not found: " + fileName);
+                System.out.println("File not found: " + fileName);
                 return "";
             }
 
             return Files.readString(filePath);
 
-        // since directly accessses files, needs to catch additional IO exception errors
+        // since directly access files, needs to catch additional IO exception errors
         } catch (IOException e) {
-            System.err.println("Error reading file: " + e.getMessage());
+            System.out.println("Error reading file: " + e.getMessage());
             return "";
 
         // catch excess errors
         } catch (Exception e) {
-            System.err.println("Unexpected error in getContents(): " + e.getMessage());
+            System.out.println("Unexpected error in getContents(): " + e.getMessage());
             e.printStackTrace();
             return "";
         }
