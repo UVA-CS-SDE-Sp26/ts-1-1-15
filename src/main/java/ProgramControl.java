@@ -22,7 +22,11 @@ public class ProgramControl {
     public static String retrieve(int num) throws IOException {
         FileHandler handler = new FileHandler();
         try{
-            String filename = handler.getFilenames().get(num-1);
+            //String filename = handler.getFilenames().get(num-1);
+            String filename = handler.getFilenames(num-1);
+            if (filename == null){
+                return "";
+            }
             String contents = handler.getContents(filename);
             return Cipher.decipher(contents);
         }
@@ -36,7 +40,11 @@ public class ProgramControl {
     public static String retrieve(int num, String key) throws IOException {
         FileHandler handler = new FileHandler();
         try {
-            String filename = handler.getFilenames().get(num-1);
+            //String filename = handler.getFilenames().get(num-1);
+            String filename = handler.getFilenames(num-1);
+            if (filename == null){
+                return "";
+            }
             String contents = handler.getContents(filename);
             return Cipher.decipher(contents, key);
         }

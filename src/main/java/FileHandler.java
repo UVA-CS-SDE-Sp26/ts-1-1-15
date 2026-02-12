@@ -52,7 +52,7 @@ public class FileHandler {
 
             //invald index
             if (n < 0 || n >= files.size()) {
-                System.err.println("Invalid file index: " + n);
+                System.err.println("Invalid file index: " + n+1);
                 return null;
             }
 
