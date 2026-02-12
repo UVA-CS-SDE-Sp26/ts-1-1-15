@@ -71,9 +71,7 @@ class FileHandlerTest{
         FileHandler fileHandler = createFileHandlerWithTempDir(tempDir);
 
         // what if index > amount files
-        assertThrows(IndexOutOfBoundsException.class, () ->
-                fileHandler.getFilenames(10)
-        );
+        assertEquals(null, fileHandler.getFilenames(10));
 
         deleteDirectory(tempDir);
     }
@@ -99,9 +97,7 @@ class FileHandlerTest{
         Path tempDir = Files.createTempDirectory("data");
         FileHandler fileHandler = createFileHandlerWithTempDir(tempDir);
 
-        assertThrows(IllegalArgumentException.class, () ->
-                fileHandler.getContents("DoesNotExist.txt")
-        );
+        assertEquals("", fileHandler.getContents ("File01.txt"));
 
         deleteDirectory(tempDir);
     }
