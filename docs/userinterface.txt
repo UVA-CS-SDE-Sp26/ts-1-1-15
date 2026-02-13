@@ -4,9 +4,9 @@ Claudia Castagna
 
 This class controls the command line interface for the user. When the program runs with no arguments a list
 of available files should be printed to the screen. When the program runs with just a number as an argument
-the contents of the corresponding file should be displayed on the screen. When no second parameter is
-given the program uses the default key. If a second parameter is specified this indicates which cipher to
-use to decode the file.
+the deciphered contents of the corresponding file should be displayed on the screen. When no second parameter is
+given the program uses the default key. If a second parameter is specified this indicates which key to
+use to decipher the file.
 
 Userinterface
 -------------------------------
@@ -15,35 +15,27 @@ Userinterface
 Userinterface Pseudocode:
 -------------------------------
 
-determineOutput(num_args)
+determineOutput(array args) -> String:
 
-    if num_args == 0:
-        try:
-            list all files available
-        catch: //catch propagated error
-            print "Error accessing files"
+    if args.length == 0:
+        list all available files
+        return
 
-    else if num_args == 1:
+    else if args.length == 1:
         try:
             decipher with default key
+            return
         catch:
-            print "Invalid argument, first argument must be an int"
+            return "Error: First argument must be the number of the file you wish to decipher"
 
-        catch:
-            print "Error accessing files"
-
-
-    else if num_args == 2:
+    else if args.length == 2:
         try:
             decipher with specified key
         catch:
-            print "Invalid argument, first argument must be an int and second a String"
-        catch:
-            print "Error accessing files"
+            print "Error: First argument must be the number of the file you wish to decipher"
 
     else:
-        throw illegal argument exception "too many arguments called with program "
-
+        throw illegal argument exception "Too many arguments called with program"
 
 
 

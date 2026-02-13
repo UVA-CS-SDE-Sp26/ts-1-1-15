@@ -1,5 +1,3 @@
-import javax.sound.midi.SysexMessage;
-import java.io.IOException;
 
 public class Userinterface {
 
@@ -16,7 +14,7 @@ public class Userinterface {
             }
 
             catch (NumberFormatException e) {
-                System.out.println("Error: Please enter the number corresponding to the file you wish to decipher.");
+                return "Error: First argument must be the number of the file you wish to decipher.";
             }
         }
 
@@ -26,14 +24,13 @@ public class Userinterface {
             }
 
             catch (NumberFormatException e) {
-                System.out.println("Error: First argument must be the number of the file.");
+                return "Error: First argument must be the number of the file you wish to decipher.";
             }
         }
 
         else {
             throw new IllegalArgumentException("Attempted to run program with too many arguments.");
         }
-        return "Program failed due to invalid input.";
     }
 
 }
