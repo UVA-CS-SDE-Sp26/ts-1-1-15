@@ -3,21 +3,30 @@ Nathaneal Wattier
 
 File Handler Documentation:
 
-The file handler should read text files into from a director "data" in the root of the project.
+The FileHandler should read text files into from a director "data" in the root of the project.
+FileHandler uses java.nio to correctly path to a directory beside the the project directory, it
+must be named "data". It catches file access exceptions with specific outputs for debugging as well
+as broader exceptions, throwing no errors itself.
 
 
-filehandler
+FileHandler
 -------------------
-listFiles();
-findFile(String filename);
+getFilenames();
+getFilenames(int num);
+getContents(String filename);
 -------------------
 
 
-filehandler Pseudocode:
+filehandler method description:
 
-// returns a string array of file names
-String[] listFiles();
+// returns a string arraylist of file names
+Arraylist<String> getFilenames();
 
+// returns the string name of a file given by its index
+getFilenames(int num);
 
 // returns the contents of a file as a string given its name
-String findFile(String filename);
+String getContents(String filename);
+
+Potential Improvements:
+getFilenames is partially redundant. Portions could be made more efficient

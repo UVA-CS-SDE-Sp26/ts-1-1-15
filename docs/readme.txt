@@ -15,10 +15,11 @@ goal: manage all command line inputs and outputs.
 
 
 FileHandler
-------------------------------------
-+String getContents(String filename)
-+ArrayList<String> getFilenames()
-------------------------------------
+-------------------
++ Arraylist<String> getFilenames();
++ String getFilenames(int num);
++ String getContents(String filename);
+-------------------
 goal: manage the file folder named data.
 1) take request (from program control) for file as String filename, return contents of file as a String
 2) take request (from program control) for the list of filenames, return ArrayList of filenames
